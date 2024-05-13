@@ -1,7 +1,7 @@
 \documentclass{ctexbook}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{biblatex}
+\usepackage[backend=bibtex,style=gb7714-2015]{biblatex}
 \addbibresource[location=local]{reference.bib} % 参考文献，不要删除
 \DeclareSortingTemplate{c}{\sort{\citeorder}}
 \ExecuteBibliographyOptions{sorting=c}
@@ -12,13 +12,33 @@
 \usepackage[totoc,columns=2]{idxlayout}
 
 % hyperref with xcolor
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue!50!red,
     urlcolor=green!70!black
 }
+
+
+% 代码高亮设置%
+\usepackage{listings}
+\lstset{ %
+  numbers=left,
+  numberstyle=\tiny,
+  frame=shadowbox,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\ttfamily,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{Gray},    % comment style
+  keywordstyle=\color{teal},       % keyword style
+  stringstyle=\color{Tan},     % string literal style
+  showstringspaces=false,
+}
+
+\usepackage{graphicx}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -27,21 +47,47 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page, table of contents, etc.
 \frontmatter
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\zihao{1}一个不太复杂的中文书籍模板}
+ 
+        \vspace{0.5cm}
+        \zihao{-2} 基于ctexbook的极简模板
+             
+        \vspace{0.5cm}
+ 
+        \includegraphics[width=0.6\textwidth]{./figures/transformer.pdf}
+
+        \vfill
+
+        \textbf{Mathew Shen}
+        \vspace{1cm}
+      
+        中国•杭州\\
+        \today
+
+    \end{center}
+ \end{titlepage}
+
 
 % 增加目录
 \tableofcontents
 % 目录设置: 深度
 \setcounter{tocdepth}{2}
 
+% 前言
+\include{forward/forward.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main body of the document
 \mainmatter
-\include{chapters/chap1/chap1.tex}
-\include{chapters/chap2/chap2.tex}
-\include{chapters/chap3/chap3.tex}
+\include{chapters/chap1/chap1}
+\include{chapters/chap2/chap2}
+\include{chapters/chap3/chap3.tex}  % 这里带上.tex也是可以的
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -50,6 +96,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices, bibliography, etc.
 \backmatter
+
+% 附录
+\include{appendix/appendix_a}
+
 
 % 参考文献
 \printbibliography[title={参考文献}, heading=bibintoc]
