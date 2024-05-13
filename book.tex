@@ -1,0 +1,62 @@
+\documentclass{ctexbook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{biblatex}
+\addbibresource[location=local]{reference.bib} % 参考文献，不要删除
+\DeclareSortingTemplate{c}{\sort{\citeorder}}
+\ExecuteBibliographyOptions{sorting=c}
+
+\usepackage{makeidx} % 调用 makeidx 宏包，用来处理索引
+\makeindex % 开启索引的收集
+\usepackage[nottoc]{tocbibind}  % 使得目录中显示"索引"
+\usepackage[totoc,columns=2]{idxlayout}
+
+% hyperref with xcolor
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!50!red,
+    urlcolor=green!70!black
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page, table of contents, etc.
+\frontmatter
+
+% 增加目录
+\tableofcontents
+% 目录设置: 深度
+\setcounter{tocdepth}{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Main body of the document
+\mainmatter
+\include{chapters/chap1/chap1.tex}
+\include{chapters/chap2/chap2.tex}
+\include{chapters/chap3/chap3.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendices, bibliography, etc.
+\backmatter
+
+% 参考文献
+\printbibliography[title={参考文献}, heading=bibintoc]
+
+% 索引
+\printindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
