@@ -2,3 +2,28 @@
 \label{chap:self-defined}
 
 介绍如何配置和使用一些自定义组件。
+
+\section{公式高亮}
+
+
+\vspace{3em}
+\begin{equation*}
+    Attention(\eqnmarkbox[green]{Q}{Q}, \eqnmarkbox[blue]{K}{K}, \eqnmarkbox[red]{V}{V}) = softmax(\frac{QK^T}{\eqnmarkbox[purple]{sqrt_dk}{\sqrt{d_k}}})V
+\end{equation*}
+\annotate[yshift=3em]{above}{Q}{Query Matrix}
+\annotate[yshift=1em]{above}{K}{Key Matrix}
+\annotate[yshift=-1em]{below}{V}{Value Matrix}
+\annotate[yshift=-0.1em]{below}{sqrt_dk}{The Normalizer}
+\vspace{1em}
+
+\begin{lstlisting}[language=tex, caption={公式高亮示例代码}]
+\vspace{4em}
+\begin{equation*}
+    Attention(\eqnmarkbox[green]{Q}{Q}, \eqnmarkbox[blue]{K}{K}, \eqnmarkbox[red]{V}{V}) = softmax(\frac{QK^T}{\eqnmarkbox[purple]{sqrt_dk}{\sqrt{d_k}}})V
+\end{equation*}
+\annotate[yshift=3em]{above}{Q}{Query Matrix}
+\annotate[yshift=1em]{above}{K}{Key Matrix}
+\annotate[yshift=-1em]{below}{V}{Value Matrix}
+\annotate[yshift=-0.1em]{below}{sqrt_dk}{The Normalizer}
+\vspace{1em}
+\end{lstlisting}
