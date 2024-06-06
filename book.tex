@@ -37,6 +37,23 @@
   showstringspaces=false,
 }
 
+% TODO: change listings to minted?
+\usepackage{minted}
+\setminted{fontsize=\small}
+\setminted[json]{fontsize=\footnotesize}
+\setminted[shell]{fontsize=\small}
+
+% \usemintedstyle{elegant}
+\linespread{1.3}
+\usepackage{etoolbox,xpatch}
+
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\xpatchcmd{\inputminted}{\minted@fvset}{\minted@fvset\dontdofcolorbox}{}{}
+\makeatother
+
+
 \usepackage{graphicx}
 
 % 公式高亮

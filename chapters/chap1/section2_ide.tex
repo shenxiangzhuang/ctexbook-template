@@ -2,4 +2,30 @@
 \index{IDE}
 \index{VsCode}
 
-介绍IDE配置: 以VsCode + latexmk为主。
+\LaTeX Workshop recipes设置latexmk:
+
+\begin{minted}[frame=single]{json}
+"latex-workshop.latex.tools": [
+  {
+    "name": "latexmk",
+    "command": "latexmk",
+    "args": [
+      "--shell-escape",
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "-xelatex",
+      "%DOC%"
+    ]
+  },
+],
+
+  "latex-workshop.latex.recipes": [
+  {
+    "name": "latexmk",
+    "tools": [
+        "latexmk"
+      ]
+  },
+],
+\end{minted}
