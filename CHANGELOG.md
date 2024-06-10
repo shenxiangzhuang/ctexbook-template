@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2024-06-10
+
+### 新增
+- 环境配置简要说明
+- 公式注解 (Annotation Equation) 示例
+
 
 ## [0.0.1] - 2024-05-13
 
