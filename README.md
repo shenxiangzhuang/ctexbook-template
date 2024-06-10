@@ -1,27 +1,21 @@
-# ctexbook-template
-Chinese Latex Book Template
+# 一个不太复杂的中文书籍模板
 
 
-## VsCode
+## Features
+- CTeX Book
+- Equation Annotation
 
-Build with latexmk(xelatex):
 
-```json
-{
-    "latex-workshop.latex.tools": [
-        {
-            "name": "xelatexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-xelatex",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-    ]
-}
-```
+## Screenshots
+
+<p align="center">
+    <img src="./asset/image/cover.png" alt="Cover" width="300" height="400">
+</p>
+
+<p align="center">
+    <img src="./asset/image/toc.png" alt="TOC" width="300" height="400">
+</p>
+
+<p align="center">
+    <img src="./asset/image/features/equation_annotation.png" alt="Equation Annotation" width="300" height="400">
+</p>
