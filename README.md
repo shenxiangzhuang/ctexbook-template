@@ -1,4 +1,4 @@
-# 一个不太复杂的中文书籍模板
+# 一个不太复杂的中文书籍 LaTeX 模板
 
 
 ## Features
@@ -20,5 +20,5 @@
 </p>
 
 <p align="center">
-    <img src="./asset/image/features/equation_annotation.png" alt="Equation Annotation" width="600" height="400">
+    <img src="./asset/image/features/equation_annotation.png" alt="Equation Annotation" width="500" height="500">
 </p>
