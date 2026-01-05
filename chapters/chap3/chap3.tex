@@ -5,7 +5,6 @@
 
 \section{公式高亮}
 
-
 \vspace{3em}
 \begin{equation*}
     Attention(\eqnmarkbox[green]{Q}{Q}, \eqnmarkbox[blue]{K}{K}, \eqnmarkbox[red]{V}{V}) = softmax(\frac{QK^T}{\eqnmarkbox[purple]{sqrt_dk}{\sqrt{d_k}}})V
@@ -27,3 +26,108 @@
 \annotate[yshift=-0.1em]{below}{sqrt_dk}{The Normalizer}
 \vspace{1em}
 \end{lstlisting}
+
+\section{彩色定理框}
+\index{定理框}
+
+本模板使用 \texttt{tcolorbox} 宏包提供了多种彩色定理框环境。
+
+\subsection{定义}
+
+\begin{definition}{欧拉公式}{euler}
+    对于任意实数 $x$，有
+    \[ e^{ix} = \cos x + i \sin x \]
+    特别地，当 $x = \pi$ 时，得到著名的欧拉恒等式：$e^{i\pi} + 1 = 0$。
+\end{definition}
+
+引用定义：\cref{def:euler}。
+
+\subsection{定理与引理}
+
+\begin{lemma}{三角不等式}{triangle}
+    对于任意复数 $z_1, z_2$，有
+    \[ |z_1 + z_2| \leq |z_1| + |z_2| \]
+\end{lemma}
+
+\begin{theorem}{勾股定理}{pythagorean}
+    设直角三角形的两条直角边长分别为 $a$ 和 $b$，斜边长为 $c$，则
+    \[ a^2 + b^2 = c^2 \]
+\end{theorem}
+
+引用引理和定理：\cref{lem:triangle}，\cref{thm:pythagorean}。
+
+\subsection{推论与例}
+
+\begin{corollary}{单位圆上的点}{unit-circle}
+    由欧拉公式可知，$e^{i\theta}$ 表示单位圆上幅角为 $\theta$ 的点。
+\end{corollary}
+
+\begin{example}{计算三角形斜边}{calc-hypotenuse}
+    已知直角三角形两条直角边长分别为 3 和 4，求斜边长。
+
+    \textbf{解}：根据勾股定理，$c = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$。
+\end{example}
+
+\subsection{注}
+
+\begin{remark}
+    勾股定理是欧几里得几何中最基本的定理之一，在中国古代称为"商高定理"或"勾三股四弦五"。
+\end{remark}
+
+\section{提示框}
+\index{提示框}
+
+本模板提供了三种提示框，用于突出显示重要信息。
+
+\begin{tipbox}
+    编译本模板推荐使用 \texttt{latexmk} 命令，它会自动处理多次编译和 biber 调用。
+\end{tipbox}
+
+\begin{warnbox}
+    请确保使用 XeLaTeX 引擎编译本文档，pdfLaTeX 可能无法正确处理中文。
+\end{warnbox}
+
+\begin{notebox}
+    如果遇到参考文献不显示的问题，请检查是否正确运行了 biber 命令。
+\end{notebox}
+
+\section{算法伪代码}
+\index{算法}
+
+本模板使用 \texttt{algorithm2e} 宏包编写算法，支持中文关键字。
+
+\begin{algorithm}[H]
+    \caption{二分查找}
+    \label{alg:binary-search}
+    \KwIn{有序数组 $A[0..n-1]$，目标值 $x$}
+    \KwOut{目标值的索引，若不存在则返回 $-1$}
+    $l \leftarrow 0$\;
+    $r \leftarrow n - 1$\;
+    \While{$l \leq r$}{
+        $m \leftarrow \lfloor (l + r) / 2 \rfloor$\;
+        \If{$A[m] = x$}{
+            \KwRet{$m$}\;
+        }
+        \ElseIf{$A[m] < x$}{
+            $l \leftarrow m + 1$\;
+        }
+        \Else{
+            $r \leftarrow m - 1$\;
+        }
+    }
+    \KwRet{$-1$}\;
+\end{algorithm}
+
+\vspace{1em}
+
+\begin{algorithm}[H]
+    \caption{快速排序}
+    \label{alg:quicksort}
+    \KwIn{数组 $A[p..r]$}
+    \KwOut{排序后的数组}
+    \If{$p < r$}{
+        $q \leftarrow$ \textsc{Partition}$(A, p, r)$\;
+        \textsc{QuickSort}$(A, p, q-1)$\;
+        \textsc{QuickSort}$(A, q+1, r)$\;
+    }
+\end{algorithm}

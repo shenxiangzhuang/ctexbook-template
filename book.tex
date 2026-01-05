@@ -1,53 +1,205 @@
-\documentclass{ctexbook}
+\documentclass[UTF8, zihao=-4, openany]{ctexbook}
+
+% 允许页面底部不强制对齐，避免 Underfull \vbox 警告
+\raggedbottom
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[backend=bibtex,style=gb7714-2015]{biblatex}
-\addbibresource[location=local]{reference.bib} % 参考文献，不要删除
+%% ========== 页面布局 ==========
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+%% ========== 图片路径 ==========
+\usepackage{graphicx}
+\graphicspath{{figures/}{asset/image/}}
+
+%% ========== 表格增强 ==========
+\usepackage{booktabs}    % 专业三线表
+\usepackage{array}       % 表格列格式扩展
+
+%% ========== 浮动体控制 ==========
+\usepackage{float}       % 提供 [H] 强制定位
+\usepackage{caption}     % 图表标题美化
+\captionsetup{font=small, labelfont=bf}
+
+%% ========== 列表定制 ==========
+\usepackage{enumitem}
+\setlist{nosep}          % 紧凑列表
+
+%% ========== 颜色支持 ==========
+\usepackage[dvipsnames, svgnames, x11names]{xcolor}
+
+%% ========== 字体设置 ==========
+\usepackage{fontspec}
+\newfontfamily\codefont{Ubuntu Mono}[Scale=0.95]
+
+%% ========== 数学公式 ==========
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{annotate-equations}  % 公式注解
+
+%% ========== 代码高亮 ==========
+\usepackage{listings}
+\lstset{
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  backgroundcolor=\color{white},
+  basicstyle=\codefont\small,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{Gray}\itshape,
+  keywordstyle=\color{teal}\bfseries,
+  stringstyle=\color{Tan},
+  showstringspaces=false,
+  tabsize=4,
+  extendedchars=true,
+  escapeinside={(*@}{@*)},
+  xleftmargin=2em,
+  % 中文符号支持
+  literate={：}{{\textbf{:}}}1 {，}{{\textbf{,}}}1 {；}{{\textbf{;}}}1,
+}
+
+%% ========== 算法/伪代码 ==========
+\usepackage[ruled, linesnumbered, algochapter]{algorithm2e}
+\SetAlgorithmName{算法}{算法}{算法列表}
+\SetKwInput{KwIn}{输入}
+\SetKwInput{KwOut}{输出}
+\SetKwInput{KwData}{数据}
+\SetKwInput{KwResult}{结果}
+\SetKw{KwRet}{返回}
+\SetKwIF{If}{ElseIf}{Else}{如果}{那么}{否则如果}{否则}{结束}
+\SetKwFor{For}{循环}{执行}{结束}
+\SetKwFor{ForEach}{对于每个}{执行}{结束}
+\SetKwFor{While}{当}{执行}{结束}
+\SetKwRepeat{Repeat}{重复}{直到}
+
+%% ========== 彩色定理框 ==========
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems, skins, breakable}
+
+% 定义 - 蓝色
+\newtcbtheorem[number within=chapter]{definition}{定义}{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}{def}
+
+% 定理 - 绿色
+\newtcbtheorem[number within=chapter]{theorem}{定理}{
+  colback=green!5!white,
+  colframe=green!50!black,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}{thm}
+
+% 引理 - 青色
+\newtcbtheorem[number within=chapter]{lemma}{引理}{
+  colback=cyan!5!white,
+  colframe=cyan!50!black,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}{lem}
+
+% 推论 - 紫色
+\newtcbtheorem[number within=chapter]{corollary}{推论}{
+  colback=violet!5!white,
+  colframe=violet!50!black,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}{cor}
+
+% 例 - 橙色
+\newtcbtheorem[number within=chapter]{example}{例}{
+  colback=orange!5!white,
+  colframe=orange!50!black,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}{ex}
+
+% 注 - 灰色（不编号）
+\newtcolorbox{remark}{
+  colback=gray!5!white,
+  colframe=gray!50!black,
+  title=注,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}
+
+%% ========== 提示框 ==========
+% 提示框 - 薄荷绿（冷色调，正面信息）
+\newtcolorbox{tipbox}[1][提示]{
+  colback=Emerald!8!white,
+  colframe=Emerald!60!black,
+  title=#1,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}
+
+% 警告框 - 珊瑚红（暖色调，警示信息）
+\newtcolorbox{warnbox}[1][警告]{
+  colback=BrickRed!8!white,
+  colframe=BrickRed!70!black,
+  title=#1,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}
+
+% 注意框 - 琥珀黄（中性暖色，注意事项）
+\newtcolorbox{notebox}[1][注意]{
+  colback=Dandelion!12!white,
+  colframe=Dandelion!70!Brown,
+  title=#1,
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+}
+
+%% ========== 参考文献 ==========
+\usepackage[backend=biber, style=gb7714-2015]{biblatex}
+\addbibresource[location=local]{reference.bib}
 \DeclareSortingTemplate{c}{\sort{\citeorder}}
 \ExecuteBibliographyOptions{sorting=c}
 
-\usepackage{makeidx} % 调用 makeidx 宏包，用来处理索引
-\makeindex % 开启索引的收集
-\usepackage[nottoc]{tocbibind}  % 使得目录中显示"索引"
-\usepackage[totoc,columns=2]{idxlayout}
+%% ========== 索引 ==========
+\usepackage{makeidx}
+\makeindex
+\usepackage[nottoc]{tocbibind}
+\usepackage[totoc, columns=2]{idxlayout}
 
-% hyperref with xcolor
-\usepackage[dvipsnames]{xcolor}
+%% ========== 超链接（最后加载）==========
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue!50!red,
-    urlcolor=green!70!black
+    linkcolor=NavyBlue,
+    citecolor=ForestGreen,
+    urlcolor=Magenta,
+    bookmarksnumbered=true,
+    pdfstartview=FitH,
 }
+\usepackage{cleveref}  % 智能引用，需在 hyperref 之后
 
-
-% 代码高亮设置%
-\usepackage{listings}
-\lstset{ %
-  numbers=left,
-  numberstyle=\tiny,
-  frame=shadowbox,
-  backgroundcolor=\color{white},   % choose the background color
-  basicstyle=\ttfamily,        % size of fonts used for the code
-  breaklines=true,                 % automatic line breaking only at whitespace
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{Gray},    % comment style
-  keywordstyle=\color{teal},       % keyword style
-  stringstyle=\color{Tan},     % string literal style
-  showstringspaces=false,
-}
-
-
-\usepackage{graphicx}
-
-% 公式高亮
-%%% standard math packages for equations:
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathtools}
-\usepackage{cleveref}
-\usepackage{annotate-equations}
-
+% 为 tcolorbox 定理环境定义 cleveref 引用格式
+\crefname{tcb@cnt@definition}{定义}{定义}
+\Crefname{tcb@cnt@definition}{定义}{定义}
+\crefname{tcb@cnt@theorem}{定理}{定理}
+\Crefname{tcb@cnt@theorem}{定理}{定理}
+\crefname{tcb@cnt@lemma}{引理}{引理}
+\Crefname{tcb@cnt@lemma}{引理}{引理}
+\crefname{tcb@cnt@corollary}{推论}{推论}
+\Crefname{tcb@cnt@corollary}{推论}{推论}
+\crefname{tcb@cnt@example}{例}{例}
+\Crefname{tcb@cnt@example}{例}{例}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -60,12 +212,12 @@
 \begin{titlepage}
     \begin{center}
         \vspace*{1cm}
- 
+
         \textbf{\zihao{1}一个不太复杂的中文书籍\LaTeX 模板}
- 
+
         \vspace{0.5cm}
         \zihao{-2} 基于 ctexbook 的极简模板
-             
+
         \vspace{0.5cm}
 
         \includegraphics[width=0.6\textwidth]{./figures/transformer.pdf}
@@ -77,18 +229,16 @@
         \today \hspace{1cm} V0.0.2
 
     \end{center}
- \end{titlepage}
+\end{titlepage}
 
-
-% 增加目录
-\tableofcontents
 % 目录设置：深度
 \setcounter{tocdepth}{2}
+% 增加目录
+\tableofcontents
 
 % 前言
 \include{forward/forward.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main body of the document
@@ -99,15 +249,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices, bibliography, etc.
 \backmatter
 
 % 附录
 \include{appendix/appendix_a}
-
 
 % 参考文献
 \printbibliography[title={参考文献}, heading=bibintoc]
