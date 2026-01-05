@@ -30,7 +30,16 @@
 
 %% ========== 字体设置 ==========
 \usepackage{fontspec}
-\newfontfamily\codefont{Ubuntu Mono}[Scale=0.95]
+% 代码字体：优先使用 Google Sans Code，未安装则回退到 Ubuntu Mono，最后回退到默认等宽字体
+\IfFontExistsTF{Google Sans}{
+  \newfontfamily\codefont{Google Sans Code}[Scale=0.9]
+}{
+  \IfFontExistsTF{Ubuntu Mono}{
+    \newfontfamily\codefont{Ubuntu Mono}[Scale=0.95]
+  }{
+    \let\codefont\ttfamily
+  }
+}
 
 %% ========== 数学公式 ==========
 \usepackage{amsmath}
