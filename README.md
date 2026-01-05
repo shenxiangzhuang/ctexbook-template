@@ -4,7 +4,7 @@
 
 ## Features
 
-- **文档类**: ctexbook (UTF-8 编码, 小四号字)
+- **文档类**: ctexbook (UTF-8 编码，小四号字)
 - **页面布局**: geometry 精确控制页边距
 - **参考文献**: biblatex + GB/T 7714-2015 国标格式 (biber 后端)
 - **代码高亮**: listings (支持中文注释)
@@ -23,7 +23,7 @@
 
 - TeX Live 或 MiKTeX (完整安装)
 - latexmk
-- [just](https://github.com/casey/just) (可选, 用于命令简化)
+- [just](https://github.com/casey/just) (可选，用于命令简化)
 
 ### 编译
 
@@ -46,7 +46,7 @@ latexmk -c             # 清理临时文件
 latexmk -C             # 彻底清理
 ```
 
-**手动编译:**
+**手动编译：**
 
 ```bash
 xelatex book.tex
